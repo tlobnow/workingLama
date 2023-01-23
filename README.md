@@ -87,6 +87,7 @@ Run this script **AGAIN** to ensure that all processes have finished and to prep
 You can check your slurm job status with `./squeue_check.sh` or manually via `squeue -u $USER`
 
 Slurm jobs can be cancelled with: `scancel $JOBID`
+
 ALL currently running jobs can be cancelled with: `scancel -u $USER`
 
 ### Folder Structure Main
@@ -118,10 +119,16 @@ ALL currently running jobs can be cancelled with: `scancel -u $USER`
     - relaxed_model_{1..5}_XXX.pdb
 
   - If you prepare results for R, you will rename the files for easier tracking (otherwise everything looks the same aside from 6-digit job numbers)
-    - model_{1..5}_XXX.pdb --> /UNRLXD/$OUT_NAME_model_{1-5}.pdb *OR for simple* /UNRLXD/${FILE}_model_${i}_x${N}.pdb
-    - relaxed_model_{1-5}_XXX.pdb --> $OUT_NAME_rlx_model_{1-5}.pdb *OR for simple* ${FILE}_rlx_model_${i}_x${N}.pdb
+    - model_{1..5}_XXX.pdb --> /UNRLXD/$OUT_NAME_model_{1-5}.pdb //complex targets
+    - model_{1..5}_XXX.pdb --> /UNRLXD/${FILE}_model_${i}_x${N}.pdb //simple targets
+    
+    - relaxed_model_{1-5}_XXX.pdb --> $OUT_NAME_rlx_model_{1-5}.pdb //complex targets
+    - relaxed_model_{1-5}_XXX.pdb --> ${FILE}_rlx_model_${i}_x${N}.pdb //simple targets
+
     - pkl files take up tons of space and are removed, unless you specifically want to keep them
-    - slurm* --> ${LOC_SCRIPTS}/myRuns/$OUT_NAME/temp *OR for simple* ${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}
+
+    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/$OUT_NAME/temp
+    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}
       - The SLURM output files from the scripts folder are concatenated and the original files are moved to "temp", to separate old from new files
       - The concatenaed SLURM file is moved into the output folder
 
