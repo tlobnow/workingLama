@@ -14,7 +14,7 @@ Activate the environment (This will take a while..)
 
 ```
 conda env update -n ~/workLama/loadLama --file
-conda activate loadLama
+conda activate loadLama --file ~/workingLama/loadLama.yml
 ```
 
 ### 3. Add your fasta files in *fasta_files*
