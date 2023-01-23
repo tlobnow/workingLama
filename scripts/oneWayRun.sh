@@ -4,9 +4,11 @@ source 00_source.inc
 #################################################################
 ### ARE ALL FASTA FILES PREPARED AS FEATURE FILES?? --> CHECK!
 
+CONTINUE=TRUE
+
 for i in $LOC_FASTA/*; do
 	if [ -f $LOC_FEATURES/$(basename -a -s .fasta $i)/features.pkl ]; then
-                        echo " (─ ‿ ─)  $(basename -a -s .fasta $i) READY!"
+                        echo " \(^o^)/ $(basename -a -s .fasta $i) READY!"
 			CONTINUE=TRUE
 	else echo " ..... $(basename -a -s .fasta $i) FEATURES FILE MISSING -> STARTING MSA!"
 

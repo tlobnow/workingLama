@@ -1,18 +1,19 @@
-OUT_NAME=IL1R_IL1AP_MYD88_x6
-        # Specify the name you want for your output folder
-
-STOICHIOMETRY=IL1R:1/IL1AP:1/MYD88:6
-        # See info below
-
 FOLDER=TEST
-N=6
+	# Specify the folder where your fasta files are located.
+	# This folder will be used to create a list of the fasta base names, for which models will be run.
+	# Once created, you can adapt the list to batches if necessary.
 
-LOC_SCRIPTS=~/lazyLama/scripts                    # Specify where the scripts   are located
-LOC_FASTA=~/lazyLama/fasta_files                  # Specify where fasta_files   are located
-LOC_FEATURES=~/lazyLama/feature_files             # Specify where feature_files are located
-LOC_OUT=~/lazyLama/output_files/$OUT_NAME	  # Specify where your outputs  are located
-LOC_FEA_GEN=~/lazyLama/scripts/feaGen		  # Specify where feature generating scripts are located
-LOC_LISTS=~/lazyLama/scripts/lists		  # Specify where list files    are located
+N=6
+	# Specify the number of monomers in run your run: e.g. 6 would create a homohexamer
+
+LOC_SCRIPTS=~/workingLama/scripts                # Specify where the scripts   are located
+LOC_FASTA=~/workingLama/fasta_files              # Specify where fasta_files   are located
+LOC_FEATURES=~/workingLama/feature_files/${FILE} # Specify where feature_files are located
+LOC_FEA_GEN=~/workingLama/scripts/feaGen	 # Specify where feature generating scripts are located
+LOC_LISTS=~/workingLama/scripts/lists		 # Specify where list files    are located
+
+STOICHIOMETRY=${FILE}:${N}
+LOC_OUT=~/workingLama/output_files/${FILE}_x${N}
 
 mkdir -p $LOC_SCRIPTS/myRuns			  # Ensure that you have a folder where runs are located
 mkdir -p $LOC_SCRIPTS/lists			  # Ensure that you have a folder where lists are located
@@ -23,7 +24,6 @@ mkdir -p $LOC_SCRIPTS/lists			  # Ensure that you have a folder where lists are 
 
 # A WORD ON THE MODEL SCRIPT
 
-	# If MODEL is set to "yes", the pipeline will execute MODEL.sh, so you will run some or all (depending on status):
 	# (1) prepare feature files for all fasta files
 	#	-> output in feature_files (features.pkl)
 	# (2) run the predictions (5 neural network models) 
