@@ -90,25 +90,26 @@ Slurm jobs can be cancelled with: `scancel $JOBID`
 
 ALL currently running jobs can be cancelled with: `scancel -u $USER`
 
-### Folder Structure Main
+
+### MAIN FOLDER STRUCTURE
 
   - *fasta_files*: where fasta files are stored
   - *feature_files*: output from the MSA lands here (msa folder + **.pkl** file)
   - *output_files*:  where modeling results are stored
   - *scripts*: everything you need to run the pipeline
 
-#### Folder Structure fasta_files
+#### Folder Structure **fasta_files**
 
   - yup. This is where the fasta files should go.
   - **Attention!** The pipeline is designed to prepare all feature files to ensure seamless downstream modeling (otherwise you will get errors because feature files are missing etc.)
 
-#### Folder Structure feature_files
+#### Folder Structure **feature_files**
 
   - Multiple Sequence Alignment (MSA, performed with script1_msa.sh) produces:
     - features.pkl file - pickle file that functions as input for modeling
     - msa folder - contains some info from the MSA
 
-#### Folder Structure output_files
+#### Folder Structure **output_files**
 
   - Modeling Scripts (performed with script2_comp_model_{1..5}.sh) produce:
     - model_{1..5}_XXX.pdb
@@ -118,21 +119,24 @@ ALL currently running jobs can be cancelled with: `scancel -u $USER`
   - Relaxation Scripts (performed with script3_relaxation.sh) produces:
     - relaxed_model_{1..5}_XXX.pdb
 
+  - PKL files take up tons of space and are removed, unless you specifically want to keep them
+
   - If you prepare results for R, you will rename the files for easier tracking (otherwise everything looks the same aside from 6-digit job numbers)
-    - model_{1..5}_XXX.pdb --> /UNRLXD/$OUT_NAME_model_{1-5}.pdb //complex targets
-    - model_{1..5}_XXX.pdb --> /UNRLXD/${FILE}_model_${i}_x${N}.pdb //simple targets
-    
-    - relaxed_model_{1-5}_XXX.pdb --> $OUT_NAME_rlx_model_{1-5}.pdb //complex targets
-    - relaxed_model_{1-5}_XXX.pdb --> ${FILE}_rlx_model_${i}_x${N}.pdb //simple targets
-
-    - pkl files take up tons of space and are removed, unless you specifically want to keep them
-
+  - FOR **COMPLEX TARGETS**:
+    - model_{1..5}_XXX.pdb --> /UNRLXD/$OUT_NAME_model_{1-5}.pdb
+    - relaxed_model_{1-5}_XXX.pdb --> $OUT_NAME_rlx_model_{1-5}.pdb                  
     - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/$OUT_NAME/temp
-    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}
-      - The SLURM output files from the scripts folder are concatenated and the original files are moved to "temp", to separate old from new files
-      - The concatenaed SLURM file is moved into the output folder
 
-#### Folder Structure scripts
+  - FOR **SIMPLE TARGETS**:
+    - model_{1..5}_XXX.pdb --> /UNRLXD/${FILE}_model_${i}_x${N}.pdb    
+    - relaxed_model_{1-5}_XXX.pdb --> ${FILE}_rlx_model_${i}_x${N}.pdb
+    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}
+
+  - The SLURM output files from the scripts folder are concatenated and the original files are moved to "temp", to separate old from new files
+  - The concatenaed SLURM file is moved into the output folder
+
+
+#### Folder Structure **scripts**
 
 INPUT INFOS
   - 00_source.inc = contains all important parameter/variable paths for heteromeric targets
@@ -149,7 +153,7 @@ SCRIPTS
   - squeue_check.sh = script to show currently running jobs
 
 
-##### Folder Structure template
+##### Folder Structure **template**
 
 This folder is copied for each file. The original slurm files will be stored here (concatenated slurm files are moved into the output folder for analysis)
 
