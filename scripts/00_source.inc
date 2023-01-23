@@ -7,12 +7,12 @@ STOICHIOMETRY=IL1R:1/IL1AP:1/MYD88:6
 FOLDER=TEST
 N=6
 
-LOC_SCRIPTS=~/lazyLama/scripts                    # Specify where the scripts   are located
-LOC_FASTA=~/lazyLama/fasta_files                  # Specify where fasta_files   are located
-LOC_FEATURES=~/lazyLama/feature_files             # Specify where feature_files are located
-LOC_OUT=~/lazyLama/output_files/$OUT_NAME	  # Specify where your outputs  are located
-LOC_FEA_GEN=~/lazyLama/scripts/feaGen		  # Specify where feature generating scripts are located
-LOC_LISTS=~/lazyLama/scripts/lists		  # Specify where list files    are located
+LOC_SCRIPTS=~/workingLama/scripts                    # Specify where the scripts   are located
+LOC_FASTA=~/workingLama/fasta_files                  # Specify where fasta_files   are located
+LOC_FEATURES=~/workingLama/feature_files             # Specify where feature_files are located
+LOC_OUT=~/workingLama/output_files/$OUT_NAME	  # Specify where your outputs  are located
+LOC_FEA_GEN=~/workingLama/scripts/feaGen		  # Specify where feature generating scripts are located
+LOC_LISTS=~/workingLama/scripts/lists		  # Specify where list files    are located
 
 mkdir -p $LOC_SCRIPTS/myRuns			  # Ensure that you have a folder where runs are located
 mkdir -p $LOC_SCRIPTS/lists			  # Ensure that you have a folder where lists are located

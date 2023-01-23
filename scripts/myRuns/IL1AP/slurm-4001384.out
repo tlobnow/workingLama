@@ -1,0 +1,28 @@
+slurmstepd: error: *** JOB 4001384 ON ravg1105 CANCELLED AT 2023-01-23T11:00:53 ***
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: flobnow(42847)
+Job name:  2_AF2C
+Node list: ravg1105
+Job start: Mon Jan 23 11:00:47 CET 2023
+Job end:   Mon Jan 23 11:00:53 CET 2023
+Work dir:  /raven/u/flobnow/workingLama/scripts/myRuns/IL1AP
+Command:   /raven/u/flobnow/workingLama/scripts/myRuns/IL1AP/script2_comp_model_2.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID            JobName NNodes NTasks  NCPUS        0.00M        0.00M    Elapsed ExitCode
+------------- ---------- ------ ------ ------ ------------ ------------ ---------- --------
+4001384           2_AF2C      1           108                             00:00:06      0:0
+  
+Maximum memory per node: 0.001935 GB (defined as MaxRSS*Ntasks/NNodes)
+CPU utilization: 0.0 %
+  

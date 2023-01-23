@@ -6,7 +6,7 @@ source 00_source.inc
 
 CONTINUE=TRUE
 
-for i in $LOC_FASTA/*; do
+for i in $LOC_FASTA/*.fasta; do
 	if [ -f $LOC_FEATURES/$(basename -a -s .fasta $i)/features.pkl ]; then
                         echo " \(^o^)/ $(basename -a -s .fasta $i) READY!"
 			CONTINUE=TRUE
