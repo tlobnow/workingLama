@@ -4,9 +4,6 @@ OUT_NAME=IL1R_IL1AP_MYD88_x6
 STOICHIOMETRY=IL1R:1/IL1AP:1/MYD88:6
         # See info below
 
-FOLDER=TEST
-N=6
-
 LOC_SCRIPTS=~/workingLama/scripts                    # Specify where the scripts   are located
 LOC_FASTA=~/workingLama/fasta_files                  # Specify where fasta_files   are located
 LOC_FEATURES=~/workingLama/feature_files             # Specify where feature_files are located
