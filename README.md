@@ -10,19 +10,11 @@ git clone https://github.com/tlobnow/workingLama.git
 
 ### 2. Prepare the environment
 
-#### 2.1. Miniconda
-Do you have Miniconda installed? If not or you're not sure, please copy and execute the following:
-We will move the miniconda setup script into your home directory and will install it there.
-Download the script from "https://docs.conda.io/en/latest/miniconda.html" and upload it in your home directory.
-Execute the script in your home directory with "./Miniconda_*.sh"
-This may take a little while.. (once installed, you can move/remove the script as you like)
-
-#### 2.2. Let's set up the environment for AF2Complex
+Activate the environment (This will take a while..)
 
 ```
-pip uninstall -y tensorflow
-cd af2complex && pip install -r requirements.txt
-pip install --upgrade jax==0.2.14 jaxlib==0.1.69+cuda111 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+conda env update -n ~/workLama/loadLama --file
+conda activate loadLama
 ```
 
 ### 3. Add your fasta files in *fasta_files*
