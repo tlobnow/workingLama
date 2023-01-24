@@ -10,7 +10,7 @@ git clone https://github.com/tlobnow/workingLama.git
 
 ### 2. Prepare the environment
 
-Activate the environment (This will take a second..)
+Update and activate the environment (This might take a second)
 
 ```
 conda env update -n ~/workLama/loadLama --file
@@ -20,6 +20,10 @@ cd af2complex
 pip install --user -r requirements.txt
 pip install --user --upgrade jax==0.2.14 jaxlib==0.1.69+cuda111 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 ```
+
+
+--> For every new session from now on, you should run `conda activate loadLama`
+
 
 ### 3. Add your fasta files in *fasta_files*
 
