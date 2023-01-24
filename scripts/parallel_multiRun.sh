@@ -5,6 +5,12 @@ FILE=$1
 source ./01_source.inc
 
 cd ${LOC_SCRIPTS}/myRuns/${FILE}
+        
+### SET FILE NAME IN USER PARAMETERS
+echo FILE=$FILE  > 00_user_parameters.inc
+
+### SET TARGET STOICHIOMETRY
+echo $STOICHIOMETRY > target.lst
 
 ### START SLURM SUBMISSION DEPENDING ON CURRENT PROGRESS STATUS
 
