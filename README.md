@@ -15,6 +15,10 @@ Activate the environment (This will take a second..)
 ```
 conda env update -n ~/workLama/loadLama --file
 conda activate loadLama --file ~/workingLama/loadLama.yml
+
+cd af2complex
+pip install --user -r requirements.txt
+pip install --user --upgrade jax==0.2.14 jaxlib==0.1.69+cuda111 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 ```
 
 ### 3. Add your fasta files in *fasta_files*
