@@ -2,33 +2,34 @@
 
 source ~/workingLama/scripts/00_source.inc
 source 00_user_parameters.inc
-FILE=$FILE
 
 ## PATHS ###############################################################
-PYTHON_PATH=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0/bin
+#PYTHON_PATH=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0/bin
+PYTHON_PATH=~/miniconda3/envs/loadLama/bin
 AF_DIR=~/af2complex/src
+AF2_DIR=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0
 DATA_DIR=/raven/ri/public_sequence_data/alphafold2/git-v2.2.0/data/
 TARGET_LST_FILE=$LOC_SCRIPTS/myRuns/$FILE/target.lst	# a list of target with stoichiometry
-FEA_DIR=$LOC_FEATURES     					# input feature pickle files of individual monomers under $INP_DIR/$monomer
-OUT_DIR=~/workingLama/output_files      				# model output files will be under $out_dir/$target
+FEA_DIR=$LOC_FEATURES     				# input feature pickle files of individual monomers under $INP_DIR/$monomer
+OUT_DIR=~/workingLama/output_files      		# model output files will be under $out_dir/$target
 
 ## MSA SCRIPT PATHS ####################################################
 MAX_TEMPLATE_DATE=2020-05-15                                    # CASP14 starting date, for a very specific example case from the publication paper
-KALIGN=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0/bin/kalign
-DOWNLOAD_DIR=/raven/ri/public_sequence_data/alphafold2/git-v2.2.0/data
-TOOL_DIR=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0
+KALIGN=$AF2_DIR/bin/kalign
+DOWNLOAD_DIR=$DATA_DIR
+TOOL_DIR=$AF2_DIR
 FASTA_PATH=$LOC_FASTA/$FILE.fasta
 DB_PRESET='reduced_dbs'
-uniref90_database_path=${DOWNLOAD_DIR}/uniref90/uniref90.fasta                                  # Uniref90 database for use by JackHMMER
-mgnify_database_path=${DOWNLOAD_DIR}/mgnify/mgy_clusters_2018_12.fa                             # MGnify database for use by JackHMMER
-uniprot_database_path=${DOWNLOAD_DIR}/uniprot/uniprot.fasta                                     # Uniprot database for use by JackHMMER
-bfd_database_path=${DOWNLOAD_DIR}/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt  # BFD database for use by HHblits
-small_bfd_database_path=${DOWNLOAD_DIR}/small_bfd/bfd-first_non_consensus_sequences.fasta       # Small BFD database for use by JackHMMER
-pdb_seqres_database_path=${DOWNLOAD_DIR}/pdb_seqres/pdb_seqres.txt                              # PDB seqres database for use by hmmsearch
-uniclust30_database_path=${DOWNLOAD_DIR}/uniclust30/uniclust30_2018_08/uniclust30_2018_08       # Uniclust30 database for use by HHblits
-pdb70_database_path=${DOWNLOAD_DIR}/pdb70/pdb70                                                 # PDB70 database for use by HHsearch
-template_mmcif_dir=${DOWNLOAD_DIR}/pdb_mmcif/mmcif_files                                        # directory with template mmCIF structures, each named <pdb_id>.cif
-obsolete_pdbs_path=${DOWNLOAD_DIR}/pdb_mmcif/obsolete.dat                                       # file mapping obsolete PDB IDs to their replacements
+uniref90_database_path=$DATA_DIR/uniref90/uniref90.fasta                                  # Uniref90 database for use by JackHMMER
+mgnify_database_path=$DATA_DIR/mgnify/mgy_clusters_2018_12.fa                             # MGnify database for use by JackHMMER
+uniprot_database_path=$DATA_DIR/uniprot/uniprot.fasta                                     # Uniprot database for use by JackHMMER
+bfd_database_path=$DATA_DIR/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt  # BFD database for use by HHblits
+small_bfd_database_path=$DATA_DIR/small_bfd/bfd-first_non_consensus_sequences.fasta       # Small BFD database for use by JackHMMER
+pdb_seqres_database_path=$DATA_DIR/pdb_seqres/pdb_seqres.txt                              # PDB seqres database for use by hmmsearch
+uniclust30_database_path=$DATA_DIR/uniclust30/uniclust30_2018_08/uniclust30_2018_08       # Uniclust30 database for use by HHblits
+pdb70_database_path=$DATA_DIR/pdb70/pdb70                                                 # PDB70 database for use by HHsearch
+template_mmcif_dir=$DATA_DIR/pdb_mmcif/mmcif_files                                        # directory with template mmCIF structures, each named <pdb_id>.cif
+obsolete_pdbs_path=$DATA_DIR/pdb_mmcif/obsolete.dat                                       # file mapping obsolete PDB IDs to their replacements
 
 ## PRESET SETTINGS #####################################################
 ### run preset, note this is different from model_preset defined below
@@ -49,7 +50,7 @@ RECYCLING_SETTING=1	#no recycle info saving
 #RECYCLING_SETTING=4	#additionally save all results in pickle
 
 ## NEURAL NETWORK MODEL(s) ################################################
-NEURAL_NETWORK_MODELS=model_1_multimer_v2,model_2_multimer_v2,model_3_multimer_v2,model_4_multimer_v2,model_5_multimer_v2 # Using AF2 multimer v2.2.0
+NEURAL_NETWORK_MODELS=model_1_multimer_v2,model_2_multimer_v2,model_3_multimer_v2,model_4_multimer_v2,model_5_multimer_v2 # Using AF2 multimer v2.3.0
 #NEURAL_NETWORK_MODELS=model_1_multimer,model_2_multimer,rmodel_3_multimer,model_4_multimer,model_5_multimer # Using AF2 multimer v2.1.1
 #NEURAL_NETWORK_MODELS=model_1_ptm,model_2_ptm,model_3_ptm,model_4_ptm,model_5_ptm # Using AF2 monomer_ptm v2.0.1
 

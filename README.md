@@ -10,7 +10,7 @@ git clone https://github.com/tlobnow/workingLama.git
 
 ### 2. Prepare the environment
 
-Activate the environment (This will take a while..)
+Activate the environment (This will take a second..)
 
 ```
 conda env update -n ~/workLama/loadLama --file
@@ -28,19 +28,10 @@ mkdir FOLDER_NAME
 
 If you start with a combined fasta file (multiple sequences in one file), you can **split** your files using a neat little function called *splitfasta*. This will automatically create a folder named *EXAMPLE_split_files* and store the new files as *EXAMPLE_{1..X}.fasta*, so it will **not** extract the FASTA description ...
 
-  Can be installed with:
-
-  ```
-  pip install splitfasta
-  ```
-  
-  Usage:
-
-  ```
-  splitfasta EXAMPLE.fasta
-  ```
+Can be installed via `pip install splitfasta`
 
 To work from a folder, you don't have to do anything else. Leave them in there.
+
 To work on individual files and more complex stoichiometric targets, please copy your fasta files *directly* into fasta_files, not in subfolders.
 
 
@@ -61,7 +52,6 @@ To work on individual files and more complex stoichiometric targets, please copy
 
 Enter the **scripts** directory to start the pipeline.
 
-If you run this script **ONCE**, you will run MSA and model prediction, unless RAVEN crosses your plans, the relaxation should also finish. Run again, if you're unsure. The pipeline will automatically determine the current progress status and start the necessary scripts.
 Run this script **AGAIN** to ensure that all processes have finished and to prepare the output files for analysis in R.
 
 #### 5a) For complex heteromeric targets, run:
@@ -70,7 +60,7 @@ Run this script **AGAIN** to ensure that all processes have finished and to prep
 ./oneWayRun.sh
 ```
 
-#### 5b) For multiple homomeric targets, run:
+#### 5b) For multiple simple (homomeric) targets, run:
 
 ```
 ./multiRun.sh

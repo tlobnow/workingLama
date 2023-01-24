@@ -13,7 +13,7 @@ LOC_LISTS=~/workingLama/scripts/lists		  # Specify where list files    are locat
 
 mkdir -p $LOC_SCRIPTS/myRuns			  # Ensure that you have a folder where runs are located
 mkdir -p $LOC_SCRIPTS/lists			  # Ensure that you have a folder where lists are located
-
+mkdir -p ~/workingLama/output_files		  # Ensure that you have a folder where outputs are located
 ##########################################################################################################################
 ##########################################################################################################################
 ##########################################################################################################################
