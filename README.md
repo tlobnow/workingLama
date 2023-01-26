@@ -16,9 +16,8 @@ Update and activate the environment (This might take a second)
 conda env update -n ~/workLama/loadLama --file
 conda activate loadLama --file ~/workingLama/loadLama.yml
 
-cd af2complex
-pip install --user -r requirements.txt
-pip install --user --upgrade jax==0.2.14 jaxlib==0.1.69+cuda111 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+cd af2complex/src/
+python -m pip install . -vv
 ```
 
 
@@ -140,8 +139,12 @@ SCRIPTS
   - oneWayRun.sh = heteromeric pipeline coordinator script. Determines current progress and prompts next scripts
   - multiRun.sh = simple (homomeric) pipeline coordinator script. Determines current progress and prompts next scripts
   - prepYourFeatures.sh = script to manually start the feature file generation
-  - squeue_check.sh = script to show currently running jobs
-
+  - prep4R.sh = script for R preparation 
+        - arg1 = script folder name
+        - arg2 = output folder name 
+        - adjust name modifications as needed
+  - squeue_check.sh = script to show currently running jobs = `squeue -u $USER`
+  - quit_all_jobs.sh = script to cancel ALL currently running jobs = `scancel -u $USER`
 
 ##### Folder Structure **template**
 
@@ -149,9 +152,12 @@ This folder is copied for each file. The original slurm files will be stored her
 
   - 00_user_parameters.inc  = contains file name, created when pipeline starts
   - 01_user_parameters.inc  = specify variables for script1_msa.sh
-  - 02_user_parameters.inc  = -..- script2_comp_model_{1..5}.sh
+  - 02_user_parameters.inc  = -.- script2_comp_model_{1..5}.sh
   - script1_msa.sh          = script for Multiple Sequence alignment
   - script2_comp_model_{1..5}.sh = script for structure prediction with multimer neural network 1-5
   - script3_relaxation.sh   = script for relaxation (getting rid of unphysical clashes) of all models
+  - submit{1..3}_*.sh	    = scripts to directly submit specific pipeline scripts or the entire pipeline
+	- big pipeline      = MSA + complex prediction + relaxation
+	- small pipeline    = complex prediction + relaxation
   - target.lst              = contains modeling stoichiometry, created when pipeline starts
   - temp                    = folder with old (already processed) slurm files

@@ -45,7 +45,8 @@ echo "Info: input directory of unrelaxed models is $OUT_DIR"
 echo "Info: output directory of relaxed models is $OUT_DIR"
 
 ### RUN #######################################################################
-srun $PYTHON_PATH/python3 -u $AF_DIR/run_af2c_min.py \
+#srun $PYTHON_PATH/python3 -u $AF_DIR/run_af2c_min.py \
+srun /mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0/bin/python3 -u $AF_DIR/run_af2c_min.py \
   --target_lst_path=$TARGET_LST_FILE \
   --output_dir=$OUT_DIR \
   --input_dir=$OUT_DIR

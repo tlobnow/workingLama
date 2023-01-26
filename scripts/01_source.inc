@@ -1,4 +1,4 @@
-FOLDER=TEST
+FOLDER=SwissProt_Reviewed_MYD88
 	# Specify the folder where your fasta files are located.
 	# This folder will be used to create a list of the fasta base names, for which models will be run.
 	# Once created, you can adapt the list to batches if necessary.
@@ -12,9 +12,9 @@ LOC_FEATURES=~/workingLama/feature_files/${FILE} # Specify where feature_files a
 LOC_FEA_GEN=~/workingLama/scripts/feaGen	 # Specify where feature generating scripts are located
 LOC_LISTS=~/workingLama/scripts/lists		 # Specify where list files    are located
 
-STOICHIOMETRY=${FILE}:${N}
-LOC_OUT=~/workingLama/output_files/${FILE}_x${N}
-
+STOICHIOMETRY=IL1AP:1/IL1R:1/${FILE}:${N}
+#LOC_OUT=~/workingLama/output_files/IL1RAP_x2_${FILE}_x${N}
+LOC_OUT=~/workingLama/output_files/IL1AP_x1+IL1R_x1+${FILE}_x${N}
 mkdir -p $LOC_SCRIPTS/myRuns			  # Ensure that you have a folder where runs are located
 mkdir -p $LOC_SCRIPTS/lists			  # Ensure that you have a folder where lists are located
 mkdir -p ~/workingLama/output_files               # Ensure that you have a folder where outputs are located
