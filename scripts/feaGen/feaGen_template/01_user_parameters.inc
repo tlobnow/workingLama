@@ -9,5 +9,12 @@ FASTA_PATHS=~/workingLama/fasta_files/$FILE.fasta
 OUTPUT_DIR=~/workingLama/feature_files/
 
 # Preset for alphafold, passed via --db_preset
-PRESET="full_dbs"
+#PRESET="full_dbs"
+PRESET="reduced_dbs"
 
+PYTHON_PATH=~/miniconda3/envs/loadLama/bin
+AF_DIR=~/af2complex/src
+AF2_DIR=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0
+DATA_DIR=/raven/ri/public_sequence_data/alphafold2/git-v2.2.0/data/
+
+TOOL_DIR=/mpcdf/soft/SLE_15/packages/x86_64/alphafold/2.2.0/bin

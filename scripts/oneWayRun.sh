@@ -10,9 +10,7 @@ for i in $LOC_FASTA/*.fasta; do
 	if [ -f $LOC_FEATURES/$(basename -a -s .fasta $i)/features.pkl ]; then
                         echo " \(^o^)/ $(basename -a -s .fasta $i) READY!"
 			CONTINUE=TRUE
-	else echo " ..... $(basename -a -s .fasta $i) FEATURES FILE MISSING -> STARTING MSA!"
-
-                        ### copy the template folder in the feaGen directory and create a folder for each MSA output ###
+	else ### copy the template folder in the feaGen directory and create a folder for each MSA output ###
                         cp -r $LOC_FEA_GEN/feaGen_template $LOC_FEA_GEN/$(basename -a -s .fasta $i)
 
                         ### enter the new file folder ###
@@ -24,7 +22,7 @@ for i in $LOC_FASTA/*.fasta; do
                         ### prepare an sbatch job and submit it ###
                         set -e
                         JOBID1=$(sbatch --parsable script1_msa.sh)
-                        echo " ..... ${JOBID1} (MSA)"
+                        echo " /(x.x)\ (${JOBID1}) $(basename -a -s .fasta $i) FEATURES FILE MISSING. STARTING MSA!"
 			CONTINUE=FALSE
 	fi
 done
@@ -90,8 +88,8 @@ if [ $CONTINUE = "TRUE" ]; then
 				for i in {1..5}; do
 				  mv model_${i}_*_*_*_*_*.pdb $LOC_OUT/UNRLXD/$OUT_NAME_model_${i}.pdb
 				  [ -f model_${i}_*_*_*_*_*.pkl ] && rm model_${i}_*_*_*_*_*.pkl
-				  mv relaxed_model_${i}_*   $OUT_NAME_rlx_model_${i}.pdb
-				  mv ranking_model_${i}_*   $LOC_OUT/JSON/$OUT_NAME_ranking_model_${i}.json
+				  mv relaxed_model_${i}_*   ${OUT_NAME}_rlx_model_${i}.pdb
+				  mv ranking_model_${i}_*   $LOC_OUT/JSON/${OUT_NAME}_ranking_model_${i}.json
 				done
 				[ -f checkpoint ] && rm -r checkpoint
 			fi

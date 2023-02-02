@@ -110,7 +110,8 @@ obsolete_pdbs_path=${DOWNLOAD_DIR}/pdb_mmcif/obsolete.dat
 
 
 # run the application
-srun ${ALPHAFOLD_HOME}/bin/python3 ${ALPHAFOLD_HOME}/app/alphafold/run_alphafold.py \
+#srun ${ALPHAFOLD_HOME}/bin/python3 ${ALPHAFOLD_HOME}/app/alphafold/run_alphafold.py \
+srun ${ALPHAFOLD_HOME}/bin/python3 -u $AF_DIR/run_af2c_fea.py \
         --output_dir="${OUTPUT_DIR}" \
         --fasta_paths="${FASTA_PATHS}" \
         --db_preset="${PRESET}" \

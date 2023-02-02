@@ -1,7 +1,7 @@
 # workingLama
 A pipeline designed to simultaneously process multiple samples from FASTA to multimeric models based on AlphaFold algorithms (AF Multimer) and AF2C scripts optimized for complex prediction. Scripts are written to work on the HPC RAVEN cluster (MPCDF) using SLURM as the workload manager.
 
-### 1. Clone the git repository into your workplace (In your home directory)
+### 1. Clone the git repository into your workplace (home directory)
 
 ```
 git clone https://github.com/FreshAirTonight/af2complex
@@ -10,7 +10,7 @@ git clone https://github.com/tlobnow/workingLama.git
 
 ### 2. Prepare the environment
 
-Update and activate the environment (This might take a second)
+Update and activate the environment.
 
 ```
 conda env update -n ~/workLama/loadLama --file
@@ -26,6 +26,8 @@ python -m pip install . -vv
 
 ### 3. Add your fasta files in *fasta_files*
 
+To work on individual files and more complex stoichiometric targets, please copy your fasta files *directly* into fasta_files, not in subfolders.
+
 To run multiple samples, you should create a folder and drop all your files in there (inside the  fasta_files dir)
 File names should end with EXAMPLE.fasta (see example in folder). Folders can be created with:
 
@@ -37,16 +39,13 @@ If you start with a combined fasta file (multiple sequences in one file), you ca
 
 Can be installed via `pip install splitfasta`
 
-To work from a folder, you don't have to do anything else. Leave them in there.
-
-To work on individual files and more complex stoichiometric targets, please copy your fasta files *directly* into fasta_files, not in subfolders.
 
 
 ### 4. Adjust the base file
 
 #### 4a) Work on complex targets for individual files (heteromeric) --> 00_source.inc in *scripts*
 
-1. Enter the output name you want to generate (e.g. MYD88_x6 for a homohexamer, go wild if you want)
+1. Enter the output name you want to generate (e.g. MYD88_x6 for a homohexamer, or go wild..)
 2. Adjust the stoichiometry (00_source.inc contains a lot of info on stoichiometry setup)
 
 #### 4b) Work on multiple files with simple stoichiometries (homomeric) --> 01_source.inc in *scripts*
@@ -59,9 +58,10 @@ To work on individual files and more complex stoichiometric targets, please copy
 
 Enter the **scripts** directory to start the pipeline.
 
-Run this script **AGAIN** to ensure that all processes have finished and to prepare the output files for analysis in R.
+Once, the slurm queue finished MSA & prediction, run this script **AGAIN** to prepare the output files for analysis in R.
 
-#### 5a) For complex heteromeric targets, run:
+
+#### 5a) For single (simple/complex) targets, run:
 
 ```
 ./oneWayRun.sh
@@ -74,6 +74,8 @@ Run this script **AGAIN** to ensure that all processes have finished and to prep
 ```
 
 You can check your slurm job status with `./squeue_check.sh` or manually via `squeue -u $USER`
+
+I added `./check_squeue.sh` for convenience: Automatically displays current squeue and refreshes every 10 sec (runtime 30min, adjust to your needs).
 
 Slurm jobs can be cancelled with: `scancel $JOBID`
 
@@ -112,14 +114,14 @@ ALL currently running jobs can be cancelled with: `scancel -u $USER`
 
   - If you prepare results for R, you will rename the files for easier tracking (otherwise everything looks the same aside from 6-digit job numbers)
   - FOR **COMPLEX TARGETS**:
-    - model_{1..5}_XXX.pdb --> /UNRLXD/$OUT_NAME_model_{1-5}.pdb
-    - relaxed_model_{1-5}_XXX.pdb --> $OUT_NAME_rlx_model_{1-5}.pdb                  
-    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/$OUT_NAME/temp
+    - model_{1..5}_XXX.pdb --> "/UNRLXD/$OUT_NAME_model_{1-5}.pdb"
+    - relaxed_model_{1-5}_XXX.pdb --> "$OUT_NAME_rlx_model_{1-5}.pdb"                  
+    - slurm* --> moved to "${LOC_SCRIPTS}/myRuns/$OUT_NAME/temp"
 
   - FOR **SIMPLE TARGETS**:
-    - model_{1..5}_XXX.pdb --> /UNRLXD/${FILE}_model_${i}_x${N}.pdb    
-    - relaxed_model_{1-5}_XXX.pdb --> ${FILE}_rlx_model_${i}_x${N}.pdb
-    - slurm* --> moved to ${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}
+    - model_{1..5}_XXX.pdb --> "/UNRLXD/${FILE}_model_${i}_x${N}.pdb"    
+    - relaxed_model_{1-5}_XXX.pdb --> "${FILE}_rlx_model_${i}_x${N}.pdb"
+    - slurm* --> moved to "${LOC_SCRIPTS}/myRuns/${FILE}/temp_x${N}"
 
   - The SLURM output files from the scripts folder are concatenated and the original files are moved to "temp", to separate old from new files
   - The concatenaed SLURM file is moved into the output folder

@@ -2,17 +2,15 @@
 
 source 00_source.inc
 
-for i in $LOC_FASTA/*; do
+for i in $LOC_FASTA/*.fasta; do
 	### if you CAN find a directory named like the file you are currently reading ###
 	if [ -d $LOC_FEATURES/$(basename -a -s .fasta $i)/ ]; then
 
 		### then look if you can find a features.pkl file in there and echo that the file is prepared ###
 		[ -f $LOC_FEATURES/$(basename -a -s .fasta $i)/features.pkl ] &&
-			echo " --Y-- $(basename -a -s .fasta $i) READY!" ||
+			echo " \(^o^)/ $(basename -a -s .fasta $i) READY!" ||
 		### otherwise echo that it's missing ###
-			{ echo " ..... $(basename -a -s .fasta $i) FEATURES FILE MISSING -> STARTING MSA!"
-
-			### copy the template folder in the feaGen directory and create a folder for each MSA output ###
+			{ ### copy the template folder in the feaGen directory and create a folder for each MSA output ###
 	                cp -r $LOC_FEA_GEN/feaGen_template $LOC_FEA_GEN/$(basename -a -s .fasta $i)
 
 	                ### enter the new file folder ###
@@ -23,14 +21,13 @@ for i in $LOC_FASTA/*; do
 
                 	### prepare an sbatch job and submit it ###
         	        set -e
-	                JOBID1=$(sbatch --parsable script1_msa.sh)
-	                echo " ..... ${JOBID1} (MSA)" 
+	                JOBID1=$(sbatch --parsable script2_msa.sh)
+			echo " /(x.x)\ (${JOBID1}) $(basename -a -s .fasta $i) FEATURES FILE MISSING... STARTING MSA!" 
 			}
 		
 	### if you CANNOT find a directory named like the file you are currently reading ###
 	### then echo that it's missing and start the MSA to create one! ###
-	else echo " ..... $(basename -a -s .fasta $i) FEATURES FILE MISSING -> STARTING MSA!"
-		
+	else 
 		### copy the template folder in the feaGen directory and create a folder for each MSA output ###
 		cp -r $LOC_FEA_GEN/feaGen_template $LOC_FEA_GEN/$(basename -a -s .fasta $i)
 
@@ -42,8 +39,8 @@ for i in $LOC_FASTA/*; do
 
 		### prepare an sbatch job and submit it ###
 		set -e
-		JOBID1=$(sbatch --parsable script1_msa.sh)
-		echo " ..... ${JOBID1} (MSA)"
+		JOBID1=$(sbatch --parsable script2_msa.sh)
+		echo " \(x.x)/ (${JOBID1}) $(basename -a -s .fasta $i) FEATURES FILE MISSING... STARTING MSA!"
 		
 	fi
 done
