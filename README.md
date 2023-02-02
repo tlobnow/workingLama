@@ -1,6 +1,8 @@
 # workingLama
 A pipeline designed to simultaneously process multiple samples from FASTA to multimeric models based on AlphaFold algorithms (AF Multimer) and AF2C scripts optimized for complex prediction. Scripts are written to work on the HPC RAVEN cluster (MPCDF) using SLURM as the workload manager.
 
+![](https://raw.githubusercontent.com/tlobnow/workingLama/main/workingLama_Flow.png)
+
 ### 1. Clone the git repository into your workplace (home directory)
 
 ```
