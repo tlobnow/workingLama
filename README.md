@@ -24,34 +24,39 @@ python -m pip install . -vv
 --> For every new session from now on, you should run `conda activate loadLama`
 
 
-### 3. Add your fasta files in *fasta_files*
+### 3. Add your fasta files in *fasta_files* and prepare features
 
 To work on individual files and more complex stoichiometric targets, please copy your fasta files *directly* into fasta_files, not in subfolders.
 
 To run multiple samples, you should create a folder and drop all your files in there (inside the  fasta_files dir)
+
 File names should end with EXAMPLE.fasta (see example in folder). Folders can be created with:
 
 ```
 mkdir FOLDER_NAME
 ```
 
-If you start with a combined fasta file (multiple sequences in one file), you can **split** your files using a neat little function called *splitfasta*. This will automatically create a folder named *EXAMPLE_split_files* and store the new files as *EXAMPLE_{1..X}.fasta*, so it will **not** extract the FASTA description ...
+If you start with a combined fasta file (multiple sequences in one file), you can **split** your files using a neat little function called *splitfasta*. This will automatically create a folder named *EXAMPLE_split_files* and store the new files as *EXAMPLE_{1..X}.fasta*, so it will **not** extract the FASTA description ... (install via `pip install splitfasta`)
 
-Can be installed via `pip install splitfasta`
+In order to prepare all files for complex prediction, run the following script:
 
-
+```
+~/workingLama/scripts/prepYourFeatures.sh
+```
 
 ### 4. Adjust the base file
 
-#### 4a) Work on complex targets for individual files (heteromeric) --> 00_source.inc in *scripts*
+#### 4a) Work on targets for single files (homo-/heteromeric) --> 00_source.inc in *scripts*
 
-1. Enter the output name you want to generate (e.g. MYD88_x6 for a homohexamer, or go wild..)
-2. Adjust the stoichiometry (00_source.inc contains a lot of info on stoichiometry setup)
+1. Enter the **output name** you want to generate (e.g. MYD88_x6 for a homohexamer, or go wild..)
+2. Adjust the **stoichiometry** (00_source.inc contains more info on stoichiometry setup)
+
 
 #### 4b) Work on multiple files with simple stoichiometries (homomeric) --> 01_source.inc in *scripts*
 
 1. Enter the name of the folder you want to work on (e.g. TEST)
 2. Enter the stoichiometry (how many homomeric monomers do you want to run? (e.g. 6))
+
 
 
 ### 5. Start the pipeline
@@ -140,7 +145,7 @@ FOLDERS
 SCRIPTS
   - oneWayRun.sh = heteromeric pipeline coordinator script. Determines current progress and prompts next scripts
   - multiRun.sh = simple (homomeric) pipeline coordinator script. Determines current progress and prompts next scripts
-  - prepYourFeatures.sh = script to manually start the feature file generation
+  - prepYourFeatures.sh = script to manually start the feature file generation (subscripts are stored in /feaGen, output in feature_files)
   - prep4R.sh = script for R preparation 
         - arg1 = script folder name
         - arg2 = output folder name 
