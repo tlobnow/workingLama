@@ -9,7 +9,7 @@ countdown() {
     done
 }
 
-runtime="30 minute"
+runtime="600 minute"
 endtime=$(date -ud "$runtime" +%s)
 N=10
 
