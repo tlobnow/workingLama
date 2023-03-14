@@ -15,7 +15,7 @@ git clone https://github.com/tlobnow/workingLama.git
 Update and activate the environment.
 
 ```
-conda env update -n ~/workLama/loadLama --file
+conda env update -n loadLama --file ~/workingLama/loadLama.yml
 conda activate loadLama --file ~/workingLama/loadLama.yml
 
 cd af2complex/src/
